@@ -18,13 +18,12 @@ app.use(session({
     resave : true,
     saveUninitialized : true
 }))
-app.use(express.json)
+app.use(express.json())
 app.use(express.urlencoded({ extended : true }))
-app.use(express.static(path.join(__dirname, 'static')))
-
+app.use(express.static(path.join(__dirname, 'src')))
 
 app.get('/', function(request, response){
-    response.sendFile(path.join(__dirname+'/index.html'))
+    response.sendFile(path.join(__dirname + '/index.html'))
 })
 
 app.post('/auth', function(request, response){
@@ -52,7 +51,7 @@ app.post('/auth', function(request, response){
 
 app.get('/home', function(request, response){
     if (request.session.loggedin){
-        response.sendFile(path.join(__dirname+'/page/success.html'))
+        response.sendFile(path.join(__dirname + '/page/success.html'))
     } else {
         response.send('Please login to view this page')
     }
